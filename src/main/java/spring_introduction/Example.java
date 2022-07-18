@@ -1,41 +1,43 @@
 package spring_introduction;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Example {
     public static void main(String[] args) {
-        String s = "aaaaaa";
+        String s = "ababababa";
         String t = "bbaaaa";
-        int[] array = {4, 2, 5, 6, 1, 3, 9};
+        int[] array = {7, 2, 5, 1, 6, 4};
+        System.out.println(longestPalindrome(s));
     }
 
-    public static  ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        //записываем значение головного узла в список
-        ListNode temp = new ListNode(0);
-        ListNode current = temp;
-
-        //Пока оба не пусты
-        while(l1 != null && l2 != null){
-            if(l1.val < l2.val){
-                current.next = l1;
-                l1 = l1.next;
+    public static int longestPalindrome(String s) {
+        int res = 0;
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            Character ch = s.charAt(i);
+            if (map.containsKey(ch)) {
+                map.put(ch, map.get(ch) + 1);
+            } else {
+                map.put(ch, 1);
             }
-            else{
-                current.next = l2;
-                l2 = l2.next;
-            }
-            current = current.next;
         }
-        //Если один из них пуст
-        if(l1 != null){
-            current.next = l1;
-            l1 = l1.next;
+        if (map.size() == 1){
+            return map.get(s.charAt(0));
         }
-        if(l2 != null){
-            current.next = l2;
-            l2 = l2.next;
-        }
+        for (Integer value : map.values()){
+            if (value % 2 == 0){
+                res += value;
+            }else{
+                res += value - 1;
 
-        return temp.next;
+            }
+        }
+        if (res < s.length()){
+            res += 1;
+        }
+        return res;
     }
 }
 
