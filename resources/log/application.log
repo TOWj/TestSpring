@@ -1,2 +1,0 @@
-19:13:29.752 [main] ERROR aop.Test1 - afterReturningGetStudentsLoggingAdvice: Student{nameSurname='Yuriy Novikov', course=4, avgGrade=5.0}
-19:13:29.753 [main] ERROR aop.Test1 - afterReturningGetStudentsLoggingAdvice: Student{nameSurname='mr. Yuriy Novikov', course=4, avgGrade=6.0}
