@@ -4,11 +4,16 @@ package aop.aspects;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import org.slf4j.Logger;
 
 @Component
 @Aspect
 public class NewLoggingAspect {
+
+    private Logger logger = LoggerFactory.getLogger(NewLoggingAspect.class);
 
 
     @Around("execution(public String returnBook())")
@@ -16,15 +21,17 @@ public class NewLoggingAspect {
 
         System.out.println("aroundReturnBookLoggingAdvice: try to return book!");
 
-        long begin = System.currentTimeMillis();
+        Object targetMethodResult = null;
 
-        Object targetMethodResult = proceedingJoinPoint.proceed();
-
-        long end = System.currentTimeMillis();
+        try {
+            targetMethodResult = proceedingJoinPoint.proceed();
+        } catch (Exception e) {
+            logger.error("aroundReturnBookLoggingAdvice: log exception - " + e);
+            System.out.println("aroundReturnBookLoggingAdvice: log exception - " + e);
+            throw e;
+        }
 
         System.out.println("aroundReturnBookLoggingAdvice: successfully return book!");
-
-        System.out.println("aroundReturnBookLoggingAdvice: time of method work - " + (end - begin) + "ms");
 
         return targetMethodResult;
     }

@@ -1,0 +1,1 @@
+21:40:23.386 [main] ERROR aop.aspects.NewLoggingAspect - aroundReturnBookLoggingAdvice: log exception - java.lang.ArithmeticException: / by zero
