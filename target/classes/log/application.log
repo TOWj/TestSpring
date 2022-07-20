@@ -1,2 +1,1 @@
-2022-07-19 17:36:34,655 ERROR a.Test1 [main] hello world!
-2022-07-19 17:37:14,855 ERROR a.Test1 [main] hello world!
+18:38:36.715 [main] INFO  aop.Test1 - hello world!
