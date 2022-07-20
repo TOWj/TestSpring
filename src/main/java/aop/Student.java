@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import java.util.Objects;
 
 
-@Component
 public class Student {
     private String nameSurname;
     private int course;
